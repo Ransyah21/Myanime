@@ -28,9 +28,14 @@ body {
     height: auto;
   }
 
-  .logo {
-    height: auto;
+  .logo-head {
+    justify-content: center;
     margin: auto;
+  }
+
+  .nav1{
+    position: sticky;
+    top: 0;
   }
 
   .title {
@@ -82,7 +87,7 @@ body {
     color: blue;
   }
 
-  .search-container {
+  .title {
     position: relative;
     align-items: center;
     margin-top: 20px;
@@ -120,6 +125,10 @@ body {
 
 .suggestion-item:hover {
   background-color: #f0f0f0;
+}
+
+.data {
+  display: none;
 }
 
   .nama h2 {
@@ -178,7 +187,7 @@ body {
 
   .main {
     text-align: center;
-    margin-top: 5%;
+    margin-top: 15%;
     justify-content: center;
   }
 
@@ -208,13 +217,21 @@ flex-wrap: wrap;
   border-radius: 20px;
   padding: 10px;
   }
+  .batas {
+    margin: 20px;
+    border-color: #ffa200;
+  }
 
   .main a {
+    padding: 20px;
     font-size: 20px;
     color: #ffa200;
     text-decoration: none;
     display: block;
-    margin: 15px;
+    margin: 50px;
+    background-color: #282828;
+    border-radius: 10px;
+    box-shadow: rgb(0, 5, 0, 0.9);
   }
 
   .footer {
@@ -234,4 +251,8 @@ text-align: auto;
 text-transform: capitalize;
 padding: 10px;
 margin: 0;
+}
+
+.main inframe {
+  
 }
