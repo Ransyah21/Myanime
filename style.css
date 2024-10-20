@@ -88,7 +88,7 @@ body {
   }
 
   .title {
-    position: relative;
+
     align-items: center;
     margin-top: 20px;
 }
@@ -101,6 +101,8 @@ body {
     background-color: #181818;
     color: white;
 }
+
+/*  search sugestion in index */
 
 .suggestions {
   position: absolute;
@@ -170,6 +172,8 @@ body {
     margin: 10px 0;
   }
 
+  /* button Home */
+
   .home {
     font-size: 25px;
     background-color: rgb(48, 45, 45); 
@@ -184,7 +188,21 @@ body {
     text-decoration: underline;
     color: blue;
   }
+  .back {
+    font-size: 25px;
+    background-color: rgb(48, 45, 45); 
+    padding: 20px;
+    border-radius: 20px; 
+    text-decoration: none;
+    color: white;
+    transition: text-decoration 0.3s;
+    margin-left: 20px;
+  }
 
+  .back:hover {
+    text-decoration: underline;
+    color: blue;
+  }
   .main {
     text-align: center;
     margin-top: 15%;
@@ -234,24 +252,28 @@ flex-wrap: wrap;
     box-shadow: rgb(0, 5, 0, 0.9);
   }
 
-  .footer {
+/* fotter di file index */
+
+  .footer1 {
     justify-content: space-between;
     padding: 30px;
     background-color: #282828;
   }
 
-.footer .footer-left {
+.footer1 .footer-left {
   color: #ffa200;
   margin: 0;
 }
 
-.footer .footer-dekripsi {
+.footer1 .footer-dekripsi {
 word-spacing: auto;
 text-align: auto;
 text-transform: capitalize;
 padding: 10px;
 margin: 0;
 }
+
+/* Button Eps */
 
 .controls {
   padding: 20px;
@@ -274,16 +296,21 @@ margin: 0;
   background-color: #ffa200;
 }
 
+/* Video dari File Watch */
 .video {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  height: auto;
-  width: auto;
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  width: 375px;
+  height: 250px;
 }
+
 
 .main h2 {
   color: #ffa200;
   font-size: 35px;
   
 }
+
+
