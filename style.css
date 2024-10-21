@@ -310,7 +310,47 @@ margin: 0;
 .main h2 {
   color: #ffa200;
   font-size: 35px;
-  
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #1f1f1f;
+  color: #fff;
+  padding: 20px;
+  text-align: left;
+}
+
+.footer-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.footer-item {
+  width: 30%;
+  padding: 10px;
+}
+
+.footer-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.footer-item h3 {
+  display: inline-block;
+  margin: 0;
+  font-size: 18px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 5px;
+  color: orange;
+}
+
+.footer-item p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #ccc;
 }
 
 
