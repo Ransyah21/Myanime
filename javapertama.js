@@ -43,3 +43,57 @@ searchInput.addEventListener('keyup', function(event) {
     });
 });
 
+// uji coba pagination
+
+    const totalPages = 440; // Total jumlah halaman
+    const visiblePages = 5; // Jumlah halaman yang terlihat
+    let currentPage = 1; // Halaman saat ini
+
+    function renderPagination(currentPage) {
+        const pagination = document.getElementById('pagination');
+        pagination.innerHTML = ''; // Kosongkan pagination
+
+        // Hitung halaman yang akan ditampilkan
+        const startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
+        const endPage = Math.min(totalPages, startPage + visiblePages - 1);
+
+        // Tombol "Previous"
+        if (currentPage > 1) {
+            const prevPage = document.createElement('a');
+            prevPage.textContent = '«';
+            prevPage.href = '#';
+            prevPage.onclick = () => goToPage(currentPage - 1);
+            pagination.appendChild(prevPage);
+        }
+
+        // Tampilkan halaman dari startPage sampai endPage
+        for (let i = startPage; i <= endPage; i++) {
+            const pageLink = document.createElement('a');
+            pageLink.textContent = i;
+            pageLink.href = '#';
+            if (i === currentPage) {
+                pageLink.classList.add('active');
+            }
+            pageLink.onclick = () => goToPage(i);
+            pagination.appendChild(pageLink);
+        }
+
+        // Tombol "Next"
+        if (currentPage < totalPages) {
+            const nextPage = document.createElement('a');
+            nextPage.textContent = '»';
+            nextPage.href = '#';
+            nextPage.onclick = () => goToPage(currentPage + 1);
+            pagination.appendChild(nextPage);
+        }
+    }
+
+    function goToPage(pageNumber) {
+        currentPage = pageNumber;
+        renderPagination(currentPage);
+        // Logika untuk memuat halaman konten di sini
+        console.log(`Loading content for page ${pageNumber}`);
+    }
+
+    // Inisialisasi pagination pertama kali
+    renderPagination(currentPage);

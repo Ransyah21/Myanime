@@ -10,6 +10,7 @@ body {
 .navbar {
     background-color: #333;
     padding: 10px 20px;
+    margin: auto;
     text-align: left; /* Aligns the navbar to the right */
 }
 
@@ -38,14 +39,15 @@ body {
 }
 
 .about-container h1 {
-    font-size: 36px;
+    font-size: 25px;
     margin-bottom: 20px;
     color: orange;
+    text-align: center;
 }
 
 .about-container p {
     font-size: 18px;
-    line-height: 1.6;
+    align-items: center;
 }
 
 .batas {
@@ -53,6 +55,7 @@ body {
     width: 50vh;
     border-color: #ffa200;
 }
+
 
 /*Footer mulai /*
 
