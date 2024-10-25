@@ -46,13 +46,14 @@ body {
 }
 
 .about-container p {
-    font-size: 18px;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .batas {
     align-items: center;
-    width: 50vh;
     border-color: #ffa200;
 }
 
