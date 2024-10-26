@@ -105,14 +105,3 @@ searchInput.addEventListener('keyup', function(event) {
        
     }
 
-
-function showLoading(event, url) {
-    event.preventDefault(); // Mencegah link untuk membuka halaman
-    document.getElementById('loading').style.display = 'block'; // Tampilkan elemen loading
-    document.getElementById('content').classList.add('blur');
-
-    // Simulasi loading (misalnya 0.75 detik) sebelum mengalihkan ke halaman baru
-    setTimeout(function() {
-        window.location.href = url; // Arahkan ke URL yang diinginkan
-    }, 750); // Ganti 750 dengan waktu loading yang diinginkan dalam milidetik
-}
