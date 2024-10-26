@@ -109,6 +109,7 @@ searchInput.addEventListener('keyup', function(event) {
     function showLoading(event, url) {
         event.preventDefault(); // Mencegah link untuk membuka halaman
         document.getElementById('loading').style.display = 'block'; // Tampilkan elemen loading
+        document.getElementById('content').classList.add('blur');
 
         // Simulasi loading (misalnya 2 detik) sebelum mengalihkan ke halaman baru
         setTimeout(function() {

@@ -454,3 +454,7 @@ margin: 0;
   transform: translate(-50%, -50%); /* Center the loading indicator */
   z-index: 9999; /* Pastikan loading di atas konten lainnya */
 }
+
+.blur {
+  filter: blur(5px);
+}
