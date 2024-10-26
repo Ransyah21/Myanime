@@ -116,25 +116,3 @@ function showLoading(event, url) {
         window.location.href = url; // Arahkan ke URL yang diinginkan
     }, 750); // Ganti 750 dengan waktu loading yang diinginkan dalam milidetik
 }
-
-// Simpan posisi scroll saat pengguna meninggalkan halaman
-window.addEventListener('beforeunload', function() {
-    sessionStorage.setItem('scrollPosition', window.scrollY);
-});
-
-// Ambil posisi scroll yang disimpan saat halaman dimuat
-window.addEventListener('load', function() {
-    const scrollPosition = sessionStorage.getItem('scrollPosition');
-    if (scrollPosition) {
-        window.scrollTo(0, parseInt(scrollPosition));
-        sessionStorage.removeItem('scrollPosition'); // Hapus posisi scroll setelah digunakan
-    }
-    document.getElementById('loading').style.display = 'none'; // Sembunyikan elemen loading ketika halaman dimuat
-});
-
-// Fungsi untuk pergi ke halaman lain
-function goToAnotherPage() {
-    // Simulasi pergi ke halaman lain
-    alert('Anda akan pergi ke halaman lain. Ketika kembali, posisi scroll akan disimpan.');
-    // Di sini, kamu bisa mengganti dengan window.location.href = 'halaman-lain.html';
-}
