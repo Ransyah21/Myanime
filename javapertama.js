@@ -19,6 +19,16 @@ const data = [
     'Denpa Onna to Seishun Otoko',
     'Kyuukyoku Shinka shita Full Dive RPG',
     'Full Metal Panic!',
+    'Bokutachi no Remake',
+    'Gamers!',
+    'Aishen Qiaokeli-ing...',
+    'ReLIFE',
+    'Kotoura-san',
+    'UQ Holder! Mahou Sensei Negima! 2',
+    'Mahou Sensei Negima!',
+    'Bucchigiri?!',
+    'Seisen Cerberus: Ryuukoku no Fatalités',
+    'Mairimashita! Iruma-kun',
 ];
 
 // Ambil elemen-elemen yang diperlukan
