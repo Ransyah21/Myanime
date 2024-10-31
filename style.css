@@ -12,6 +12,7 @@ body {
   }
 
   .container a {
+    margin: none;
     text-decoration: none;
     color: #ccc;
   }
@@ -224,17 +225,38 @@ body {
   border-radius: 50px;
   }
 
+  @media only screen and (max-width: 767px) {
+    .main img {
+      width: 200px;
+      height: 250px;
+    }
+  }
+
   .main h2 {
   font-weight: bold;
   flex-wrap: wrap;
   }
-  
+
+  @media only screen and (max-width: 767px) {
+    .main h2 {
+      display: flexbox;
+      
+    }
+
+  }
   .main h3 {
   margin-bottom: 15px;
   margin-left: 50px;
   text-align: start;
   font-size: 20px;
   color: #ffa200;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .main h3 {
+      text-align: center;
+    }
+
   }
 
   .main p {
@@ -247,8 +269,12 @@ body {
   padding: 10px;
   }
 
+  @media only screen and (max-width: 767px) {
+  .main p {
+    text-align: center;
+  }
+}
 
-  
   .batas {
     margin: 20px;
     border-color: #ffa200;
@@ -318,14 +344,24 @@ margin: 0;
 
 /* Video dari File Watch */
 .video {
-  margin-right: 15px;
-  margin-left: 15px;
-  margin-bottom: 20px;
   border-radius: 20px;
-  width: 375px;
-  height: 250px;
+  position: relative;
+  overflow: hidden;
+  /* Mengatur lebar default untuk desktop */
+  width: 48%; /* Lebar untuk desktop */
+  height: 460px; /* Tinggi untuk desktop (rasio 16:9) */
+  margin: 0 auto; /* Untuk memusatkan kontainer */
 }
 
+@media (max-width: 767px) {
+  .video {
+      position: sticky;
+      top: 0;
+      width: 100%; /* Lebar penuh untuk perangkat mobile */
+      height: auto; /* Tinggi otomatis untuk menjaga rasio */
+      max-width: 320px; /* Lebar maksimum untuk perangkat mobile */
+    }
+}
 
 .main h2 {
   color: #ffa200;

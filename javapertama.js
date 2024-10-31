@@ -105,3 +105,15 @@ searchInput.addEventListener('keyup', function(event) {
        
     }
 
+        // Menyimpan posisi scroll sebelum keluar halaman
+        window.addEventListener("beforeunload", () => {
+            sessionStorage.setItem("scrollPosition", window.scrollY);
+        });
+
+        // Mengembalikan posisi scroll saat halaman dimuat ulang
+        window.addEventListener("load", () => {
+            const savedPosition = sessionStorage.getItem("scrollPosition");
+            if (savedPosition) {
+                window.scrollTo(0, parseInt(savedPosition, 10));
+            }
+        });
