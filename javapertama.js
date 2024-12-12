@@ -180,9 +180,16 @@ function updateMenu(isLoggedIn, userInfo) {
 
   if (isLoggedIn) {
     menu.innerHTML = `
-          <li><a href="#">Profil (${userInfo.name})</a></li>
+          <li><a href="#" style="display: flex; align-items: center; text-decoration: none;">
+      <img src="${userInfo.picture}" alt="Foto Profil" style="border-radius: 50%; width: 30px; height: 30px; margin-right: 8px;">
+      <div style="overflow: hidden; white-space: nowrap; width: 125px;">
+        <span class="animated-text">
+          Selamat Datang Di Myanime (${userInfo.name})
+        </span>
+      </div>
+    </a></li>
           <li><a href="#" id="logout-btn">Logout</a></li>
-          <li><a href="Daftar Favorite.html" id="favorites-btn">Favorites</a></li>
+          <li><a href="About.html">About</a></li>
         `;
 
     // Tambahkan event listener untuk logout
