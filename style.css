@@ -16,7 +16,7 @@ body {
   overflow: hidden;
 }
 
-.banner iframe {
+.banner video {
   position: absolute;
   object-fit: cover;
   width: 100%;
