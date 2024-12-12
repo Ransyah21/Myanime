@@ -182,7 +182,7 @@ function updateMenu(isLoggedIn, userInfo) {
     menu.innerHTML = `
           <li><a href="#">Profil (${userInfo.name})</a></li>
           <li><a href="#" id="logout-btn">Logout</a></li>
-          <li><a href="#" id="favorites-btn">Favorites</a></li>
+          <li><a href="Daftar Favorite.html" id="favorites-btn">Favorites</a></li>
         `;
 
     // Tambahkan event listener untuk logout
@@ -207,30 +207,3 @@ document.body.addEventListener("click", (e) => {
   }
 });
 
-// Tambahkan dan tampilkan favorit
-function addFavorite(animeTitle) {
-  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  if (!favorites.includes(animeTitle)) {
-    favorites.push(animeTitle);
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-    alert(`${animeTitle} ditambahkan ke favorit.`);
-  } else {
-    alert(`${animeTitle} sudah ada di favorit.`);
-  }
-}
-
-function showFavorites() {
-  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  if (favorites.length > 0) {
-    alert(`Anime favoritmu: \n- ${favorites.join("\n- ")}`);
-  } else {
-    alert("Belum ada anime di favorit.");
-  }
-}
-
-// Tambahkan event listener untuk tombol favorit
-document.body.addEventListener("click", (e) => {
-  if (e.target.id === "favorites-btn") {
-    showFavorites();
-  }
-});
