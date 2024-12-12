@@ -111,7 +111,7 @@ searchInput.addEventListener('keyup', function(event) {
 
     function ShowAlert(event) {
         event.preventDefault();
-        alert("maaf Masih dalam pengerjaan!!");
+        alert("maaf Masih dalam on-going!!");
        
     }
 
@@ -127,3 +127,14 @@ searchInput.addEventListener('keyup', function(event) {
                 window.scrollTo(0, parseInt(savedPosition, 10));
             }
         });
+
+        document.querySelectorAll('.anime-item img').forEach(img => {
+            img.addEventListener('touchstart', () => {
+                img.style.transform = 'scale(1.4)';
+            });
+        
+            img.addEventListener('touchend', () => {
+                img.style.transform = 'scale(1)';
+            });
+        });
+        

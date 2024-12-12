@@ -1,105 +1,104 @@
 body {
-  margin: auto; 
+  margin: auto;
   background-color: #181818;
   color: #fff;
   font-family: sans-serif;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+}
 
-  .container a {
-    margin: none;
-    text-decoration: none;
-    color: #ccc;
-  }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-  .container a:hover {
-    text-decoration: underline;
-    color: blue;
-  }
+.container a {
+  margin: none;
+  text-decoration: none;
+  color: #ccc;
+}
 
-  img {
-    margin: 0;
-    justify-content: center;
-    width: 250px;
-    height: auto;
-  }
+.container a:hover {
+  text-decoration: underline;
+  color: #ffa200;
+}
 
-  .logo-head {
-    justify-content: center;
-    margin: auto;
-  }
+img {
+  margin: 0;
+  justify-content: center;
+  width: 250px;
+  height: auto;
+}
 
-  .nav1{
-    position: sticky;
-    top: 0;
-  }
+.logo-head {
+  justify-content: center;
+  margin: auto;
+}
 
-  .title {
-    font-size: 38px;
-    color: #ffa200;
-    border-right: #fff;
-  }
-  
-  header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  header h1 {
-    font-size: 3em;
-    margin: 0;
-  }
-  
-  nav {
-    background-color: rgb(48, 45, 45);
-    padding: 10px;
-    border-radius: 15px;
-  }
-  
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  
-  nav li {
-    margin: 10px;
-    border-width: auto;
-  }
-  
-  nav a {
-    color: #ffa200;
-    text-decoration: none;
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  nav a:hover {
-    text-decoration: underline;
-    color: blue;
-  }
+.nav1 {
+  position: sticky;
+  top: 0;
+}
 
-  .title {
+.title {
+  font-size: 38px;
+  color: #ffa200;
+  border-right: #fff;
+}
 
-    align-items: center;
-    margin-top: 20px;
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 3em;
+  margin: 0;
+}
+
+nav {
+  background-color: rgb(48, 45, 45);
+  padding: 10px;
+  border-radius: 15px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+nav li {
+  margin: 10px;
+  border-width: auto;
+}
+
+nav a {
+  color: #ffa200;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+.title {
+  align-items: center;
+  margin-top: 20px;
 }
 
 #search-input {
-    width: 200px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #181818;
-    color: white;
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #181818;
+  color: white;
 }
 
 /*  search sugestion in index */
@@ -133,133 +132,176 @@ body {
   display: none;
 }
 
-  .nama h2 {
-    color: #ffa200;
-    font-size: 2em;
-    margin-bottom: 10px;
-  }
-  
-  .anime-list {
-    justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 20px;
-  }
-  
-  .anime-list p {
-    color: rgba(4, 235, 4, 0.452);
-    transition: color 0.2s ease-in-out;
-  }
+.nama h2 {
+  color: #ffa200;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
 
+.anime-list {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 20px;
+}
+
+.anime-list p {
+  color: rgba(4, 235, 4, 0.452);
+  transition: color 0.2s ease-in-out;
+}
+
+.anime-item {
+  background-color: #282828;
+  border-radius: 15px;
+  padding: 20px;
+  width: 125px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
   .anime-item {
-    background-color: #282828;
-    border-radius: 15px;
-    padding: 20px;
-    width: 125px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
+    padding: 8px;
   }
-  
-  .anime-item img {
-    width: 110px;
-    height: 175px;
-    border-radius: 10px;
-  }
-  
-  .anime-item h2 {
-    font-size: 1.2em;
-    margin: 10px 0;
-  }
+}
 
-  .anime-item h3 {
-    position: relative;
+.anime-item img {
+  width: 110px;
+  height: 175px;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+}
 
-  }
+.anime-item img:hover {
+  transform: scale(1.4);
+}
 
-  .anime-item p {
-    position: relative;
-  }
+.anime-item h2 {
+  font-size: 20px;
+  margin: 10px 0;
+}
 
-  /* button Home */
+.anime-item h3 {
+  color: white;
+  position: relative;
+}
 
-  .home {
-    font-size: 25px;
-    background-color: rgb(48, 45, 45); 
-    padding: 20px;
-    border-radius: 20px; 
-    text-decoration: none;
-    color: white;
-    transition: text-decoration 0.3s;
-  }
+.anime-item p {
+  position: relative;
+}
 
-  .home:hover {
-    text-decoration: underline;
-    color: blue;
-  }
-  .back {
-    font-size: 25px;
-    background-color: rgb(48, 45, 45); 
-    padding: 20px;
-    border-radius: 20px; 
-    text-decoration: none;
-    color: white;
-    transition: text-decoration 0.3s;
-    margin-left: 20px;
-  }
+/* ToolTip */
 
-  .back:hover {
-    text-decoration: underline;
-    color: blue;
-  }
-  .main {
-    text-align: center;
-    margin-top: 12%;
-    justify-content: center;
-  }
+/* Tooltip Container */
+.anime-item img {
+  position: relative;
+  cursor: pointer;
+}
 
-  .main img {
+/* Tooltip Style */
+.anime-item img::after {
+  content: attr(data-tooltip); /* Ambil teks dari atribut data-tooltip */
+  position: absolute;
+  bottom: 120%; /* Letak tooltip di atas gambar */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 10;
+  font-size: 12px;
+}
+
+/* Show Tooltip on Hover */
+.anime-item img:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-5px); /* Tooltip naik sedikit */
+}
+
+
+/* button Home */
+
+.home {
+  font-size: 25px;
+  background-color: rgb(48, 45, 45);
+  padding: 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: white;
+  transition: text-decoration 0.3s;
+}
+
+.home:hover {
+  text-decoration: underline;
+  color: blue;
+}
+.back {
+  font-size: 25px;
+  background-color: rgb(48, 45, 45);
+  padding: 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: white;
+  transition: text-decoration 0.3s;
+  margin-left: 20px;
+}
+
+.back:hover {
+  text-decoration: underline;
+  color: blue;
+}
+.main {
+  text-align: center;
+  margin-top: 12%;
+  justify-content: center;
+}
+
+.main img {
   margin-bottom: 50px;
   background-color: #383434;
   padding: 25px;
   border-radius: 50px;
-  }
+}
 
-  @media only screen and (max-width: 767px) {
-    .main img {
-      width: 200px;
-      height: 250px;
-    }
+@media only screen and (max-width: 767px) {
+  .main img {
+    width: 200px;
+    height: 250px;
   }
+}
 
-  .main h2 {
+.main h2 {
   font-weight: bold;
   flex-wrap: wrap;
-  }
+}
 
-  @media only screen and (max-width: 767px) {
-    .main h2 {
-      display: flexbox;
-      
-    }
-
+@media only screen and (max-width: 767px) {
+  .main h2 {
+    display: flexbox;
   }
-  .main h3 {
+}
+.main h3 {
   margin-bottom: 15px;
   margin-left: 50px;
   text-align: start;
   font-size: 20px;
   color: #ffa200;
+}
+
+@media only screen and (max-width: 767px) {
+  .main h3 {
+    text-align: center;
   }
+}
 
-  @media only screen and (max-width: 767px) {
-    .main h3 {
-      text-align: center;
-    }
-
-  }
-
-  .main p {
+.main p {
   margin: 25px;
   letter-spacing: 1px;
   text-align: left;
@@ -267,40 +309,39 @@ body {
   background-color: #383434;
   border-radius: 20px;
   padding: 10px;
-  }
+}
 
-  @media only screen and (max-width: 767px) {
+@media only screen and (max-width: 767px) {
   .main p {
     text-align: center;
   }
 }
 
-  .batas {
-    margin: 20px;
-    border-color: #ffa200;
-  }
+.batas {
+  margin: 20px;
+  border-color: #ffa200;
+}
 
-  .main a {
-    text-align: center;
-    padding: 20px;
-    font-size: 20px;
-    color: #ffa200;
-    text-decoration: none;
-    display: block;
-    margin: 50px;
-    background-color: #282828;
-    border-radius: 10px;
-    box-shadow: rgb(0, 5, 0, 0.9);
-  }
-
+.main a {
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+  color: #ffa200;
+  text-decoration: none;
+  display: block;
+  margin: 50px;
+  background-color: #282828;
+  border-radius: 10px;
+  box-shadow: rgb(0, 5, 0, 0.9);
+}
 
 /* fotter di file index */
 
-  .footer1 {
-    justify-content: space-between;
-    padding: 30px;
-    background-color: #282828;
-  }
+.footer1 {
+  justify-content: space-between;
+  padding: 30px;
+  background-color: #282828;
+}
 
 .footer1 .footer-left {
   color: #ffa200;
@@ -308,11 +349,11 @@ body {
 }
 
 .footer1 .footer-dekripsi {
-word-spacing: auto;
-text-align: auto;
-text-transform: capitalize;
-padding: 10px;
-margin: 0;
+  word-spacing: auto;
+  text-align: auto;
+  text-transform: capitalize;
+  padding: 10px;
+  margin: 0;
 }
 
 /* Button Eps */
@@ -355,12 +396,12 @@ margin: 0;
 
 @media (max-width: 767px) {
   .video {
-      position: sticky;
-      top: 0;
-      width: 100%; /* Lebar penuh untuk perangkat mobile */
-      height: auto; /* Tinggi otomatis untuk menjaga rasio */
-      max-width: 320px; /* Lebar maksimum untuk perangkat mobile */
-    }
+    position: sticky;
+    top: 0;
+    width: 100%; /* Lebar penuh untuk perangkat mobile */
+    height: auto; /* Tinggi otomatis untuk menjaga rasio */
+    max-width: 320px; /* Lebar maksimum untuk perangkat mobile */
+  }
 }
 
 .main h2 {
@@ -419,7 +460,8 @@ margin: 0;
   font-family: Arial, sans-serif;
 }
 
-.pagination a, .pagination span {
+.pagination a,
+.pagination span {
   color: #000;
   padding: 8px 16px;
   text-decoration: none;
@@ -429,9 +471,9 @@ margin: 0;
 }
 
 .pagination a.active {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
-  border: 1px solid #4CAF50;
+  border: 1px solid #4caf50;
 }
 
 .pagination a:hover {
@@ -439,3 +481,64 @@ margin: 0;
 }
 
 /* elemen loading */
+
+/* Efek blur di input search */
+#search-input {
+  position: relative;
+  width: 50%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#search-input:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
+}
+
+/* Container efek kilau */
+.search-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.sparkle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.sparkle span {
+  position: absolute;
+  display: block;
+  width: 5px;
+  height: 5px;
+  background-color: #ffcc00;
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkle 1.5s infinite ease-in-out;
+}
+
+@keyframes sparkle {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}
+
