@@ -2,5 +2,19 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "favorites.resources": [
+    {
+      "filePath": "index.html",
+      "group": "Default"
+    },
+    {
+      "filePath": "style.css",
+      "group": "Default"
+    },
+    {
+      "filePath": "javapertama.js",
+      "group": "Default"
+    }
+  ]
 }

@@ -385,7 +385,6 @@ nav a:hover {
 
 /* Video dari File Watch */
 .video {
-  border-radius: 20px;
   position: relative;
   overflow: hidden;
   /* Mengatur lebar default untuk desktop */
@@ -396,11 +395,12 @@ nav a:hover {
 
 @media (max-width: 767px) {
   .video {
-    position: sticky;
-    top: 0;
-    width: 100%; /* Lebar penuh untuk perangkat mobile */
-    height: auto; /* Tinggi otomatis untuk menjaga rasio */
-    max-width: 320px; /* Lebar maksimum untuk perangkat mobile */
+    position: relative;
+    width: 100%; /* Lebar penuh sesuai layar */
+    height: calc(100vw * 9 / 16); /* Rasio 16:9 */
+    max-height: 100%; /* Agar tidak melebihi layar */
+    overflow: hidden;
+    margin: 0 auto; /* Tengah pada layar besar */
   }
 }
 
