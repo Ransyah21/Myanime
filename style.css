@@ -138,6 +138,8 @@ nav a:hover {
   margin-bottom: 10px;
 }
 
+/* List anime */
+
 .anime-list {
   justify-content: center;
   display: flex;
@@ -151,24 +153,29 @@ nav a:hover {
   transition: color 0.2s ease-in-out;
 }
 
+@media (max-width: 767px) {
+.anime-list {
+  margin: 10px;
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 17px;
+}
+}
 .anime-item {
   background-color: #282828;
   border-radius: 15px;
-  padding: 20px;
-  width: 125px;
+  padding: 15px;
+  width: 85px;
+  height: auto;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   text-align: center;
 }
 
-@media (max-width: 768px) {
-  .anime-item {
-    padding: 8px;
-  }
-}
-
 .anime-item img {
-  width: 110px;
-  height: 175px;
+  justify-content: center;
+  width: 90px;
+  height: 120px;
   border-radius: 8px;
   transition: transform 0.3s ease-in-out;
 }
@@ -182,47 +189,10 @@ nav a:hover {
   margin: 10px 0;
 }
 
-.anime-item h3 {
+.anime-item span {
   color: white;
   position: relative;
-}
-
-.anime-item p {
-  position: relative;
-}
-
-/* ToolTip */
-
-/* Tooltip Container */
-.anime-item img {
-  position: relative;
-  cursor: pointer;
-}
-
-/* Tooltip Style */
-.anime-item img::after {
-  content: attr(data-tooltip); /* Ambil teks dari atribut data-tooltip */
-  position: absolute;
-  bottom: 120%; /* Letak tooltip di atas gambar */
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, transform 0.3s;
-  z-index: 10;
-  font-size: 12px;
-}
-
-/* Show Tooltip on Hover */
-.anime-item img:hover::after {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(-5px); /* Tooltip naik sedikit */
+  font-size: small;
 }
 
 
