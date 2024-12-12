@@ -143,31 +143,20 @@ function handleCredentialResponse(response) {
 const CLIENT_ID =
   "429779218315-46milavmlmmbb1b1v5p6v4mbh1o40uk6.apps.googleusercontent.com";
 const REDIRECT_URI = "http://127.0.0.1:5500"; // Ganti ini dengan URL aplikasimu
-
-// Event untuk login
-document.getElementById("google-login-btn").addEventListener("click", (e) => {
-  e.preventDefault();
-
-  const oauth2Url =
-    `https://accounts.google.com/o/oauth2/v2/auth?` +
-    `client_id=${CLIENT_ID}&` +
-    `redirect_uri=${REDIRECT_URI}&` +
-    `response_type=token&` +
-    `scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
-
-  window.location.href = oauth2Url; // Arahkan ke halaman login Google
-});
-
-// Ambil access_token dari URL
+// Cek login state
 const hash = window.location.hash;
 const params = new URLSearchParams(hash.substring(1));
-const accessToken = params.get("access_token");
+const accessToken =
+  params.get("access_token") || localStorage.getItem("access_token");
 
 if (accessToken) {
-  getUserInfo(accessToken); // Ambil data pengguna
+  localStorage.setItem("access_token", accessToken);
+  getUserInfo(accessToken);
+} else {
+  updateMenu(false);
 }
 
-// Fungsi untuk mendapatkan informasi pengguna
+// Ambil informasi pengguna
 function getUserInfo(accessToken) {
   fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
     headers: {
@@ -175,15 +164,73 @@ function getUserInfo(accessToken) {
     },
   })
     .then((response) => response.json())
-    .then((data) => {
-      console.log("User Info:", data);
-
-      // Tampilkan data pengguna di halaman
-      document.body.innerHTML = `
-          <h1>Selamat Datang, ${data.name}</h1>
-          <img src="${data.picture}" alt="Foto Profil" style="border-radius: 50%; width: 100px; justify-items: center;">
-          <p>Email: ${data.email}</p>
-        `;
+    .then((userInfo) => {
+      console.log("User Info:", userInfo);
+      updateMenu(true, userInfo);
     })
-    .catch((error) => console.error("Error fetching user info:", error));
+    .catch((error) => {
+      console.error("Error fetching user info:", error);
+      updateMenu(false);
+    });
 }
+
+// Update menu navigasi
+function updateMenu(isLoggedIn, userInfo) {
+  const menu = document.querySelector("ul");
+
+  if (isLoggedIn) {
+    menu.innerHTML = `
+          <li><a href="#">Profil (${userInfo.name})</a></li>
+          <li><a href="#" id="logout-btn">Logout</a></li>
+          <li><a href="#" id="favorites-btn">Favorites</a></li>
+        `;
+
+    // Tambahkan event listener untuk logout
+    document.getElementById("logout-btn").addEventListener("click", () => {
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("favorites"); // Hapus data favorit
+      window.location.reload();
+    });
+  }
+}
+
+// Tambahkan event listener untuk login
+document.body.addEventListener("click", (e) => {
+  if (e.target.id === "google-login-btn") {
+    const oauth2Url =
+      `https://accounts.google.com/o/oauth2/v2/auth?` +
+      `client_id=${CLIENT_ID}&` +
+      `redirect_uri=${REDIRECT_URI}&` +
+      `response_type=token&` +
+      `scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
+    window.location.href = oauth2Url;
+  }
+});
+
+// Tambahkan dan tampilkan favorit
+function addFavorite(animeTitle) {
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  if (!favorites.includes(animeTitle)) {
+    favorites.push(animeTitle);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    alert(`${animeTitle} ditambahkan ke favorit.`);
+  } else {
+    alert(`${animeTitle} sudah ada di favorit.`);
+  }
+}
+
+function showFavorites() {
+  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  if (favorites.length > 0) {
+    alert(`Anime favoritmu: \n- ${favorites.join("\n- ")}`);
+  } else {
+    alert("Belum ada anime di favorit.");
+  }
+}
+
+// Tambahkan event listener untuk tombol favorit
+document.body.addEventListener("click", (e) => {
+  if (e.target.id === "favorites-btn") {
+    showFavorites();
+  }
+});
