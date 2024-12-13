@@ -224,5 +224,3 @@ document.body.addEventListener("click", (e) => {
     window.location.href = oauth2Url;
   }
 });
-
-
