@@ -632,22 +632,3 @@ nav a:hover {
     background: linear-gradient(to top, #181818, transparent);
 }
 
-.audio-container {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-}
-
-#toggle-button {
-  padding: 9px 15px;
-  font-size: 13px;
-  border: none;
-  background-color: #181818;
-  color: white;
-  cursor: pointer;
-  border-radius: 10px;
-}
-
-#toggle-button:hover {
-  background-color: #ffa200;
-}

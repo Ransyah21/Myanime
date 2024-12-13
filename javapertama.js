@@ -226,19 +226,3 @@ document.body.addEventListener("click", (e) => {
 });
 
 
-const audio = document.getElementById('background-music');
-const toggleButton = document.getElementById('toggle-button');
-
-// Set volume awal ke 35%
-audio.volume = 0.35;
-
-// Fungsi untuk toggle play/pause
-toggleButton.addEventListener('click', () => {
-    if (audio.paused) {
-        audio.play();
-        toggleButton.textContent = 'Pause'; // Ubah teks tombol ke "Pause"
-    } else {
-        audio.pause();
-        toggleButton.textContent = 'Play'; // Ubah teks tombol ke "Play"
-    }
-});
