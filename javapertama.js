@@ -142,7 +142,7 @@ function handleCredentialResponse(response) {
 }
 const CLIENT_ID =
   "429779218315-46milavmlmmbb1b1v5p6v4mbh1o40uk6.apps.googleusercontent.com";
-const REDIRECT_URI = "http://127.0.0.1:5500"; // Ganti ini dengan URL aplikasimu
+const REDIRECT_URI = "https://ransyah21.github.io/Myanime/"; // Ganti ini dengan URL aplikasimu
 // Cek login state
 const hash = window.location.hash;
 const params = new URLSearchParams(hash.substring(1));
