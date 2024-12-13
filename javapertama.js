@@ -152,6 +152,8 @@ const accessToken =
 if (accessToken) {
   localStorage.setItem("access_token", accessToken);
   getUserInfo(accessToken);
+  // Hapus access_token dari URL
+  history.replaceState(null, '', window.location.pathname);
 } else {
   updateMenu(false);
 }
@@ -180,14 +182,23 @@ function updateMenu(isLoggedIn, userInfo) {
 
   if (isLoggedIn) {
     menu.innerHTML = `
-          <li><a href="#" style="display: flex; align-items: center; text-decoration: none;">
-      <img src="${userInfo.picture}" alt="Foto Profil" style="border-radius: 50%; width: 30px; height: 30px; margin-right: 8px;">
-      <div style="overflow: hidden; white-space: nowrap; width: 125px;">
-        <span class="animated-text">
-          Selamat Datang Di Myanime (${userInfo.name})
-        </span>
-      </div>
-    </a></li>
+          <li>
+      <a href="#" style="display: flex; align-items: center; text-decoration: none;">
+        <div style="position: relative; display: inline-block;">
+          <div class="fire-effect"></div>
+          <div class="fire-effect"></div>
+          <div class="fire-effect"></div>
+          <div style="width: 30px; height: 30px; background: white; border-radius: 50%; border: 5px solid orange; display: flex; justify-content: center; align-items: center;">
+            <img src="${userInfo.picture}" alt="Foto Profil" style="border-radius: 50%; width: 30px; height: 30px; position: relative; z-index: 1;">
+          </div>
+        </div>
+        <div style="overflow: hidden; white-space: nowrap; width: 125px;">
+          <span class="animated-text">
+            Selamat Datang Di Myanime (${userInfo.name})
+          </span>
+        </div>
+      </a>
+    </li>
           <li><a href="#" id="logout-btn">Logout</a></li>
           <li><a href="About.html">About</a></li>
         `;
@@ -214,3 +225,20 @@ document.body.addEventListener("click", (e) => {
   }
 });
 
+
+const audio = document.getElementById('background-music');
+const toggleButton = document.getElementById('toggle-button');
+
+// Set volume awal ke 35%
+audio.volume = 0.35;
+
+// Fungsi untuk toggle play/pause
+toggleButton.addEventListener('click', () => {
+    if (audio.paused) {
+        audio.play();
+        toggleButton.textContent = 'Pause'; // Ubah teks tombol ke "Pause"
+    } else {
+        audio.pause();
+        toggleButton.textContent = 'Play'; // Ubah teks tombol ke "Play"
+    }
+});

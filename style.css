@@ -12,7 +12,7 @@ body {
   justify-content: center;
   align-items: center;
   position: absolute;
-  z-index: -2;
+  z-index: -1;
   overflow: hidden;
 }
 
@@ -21,12 +21,20 @@ body {
   object-fit: cover;
   width: 100%;
   height: 79%;
-  z-index: 1;
   background: linear-gradient(to bottom, #181818);
 }
+
+.desktop {
+  display: block; /* Tampilkan video desktop */
+}
+
+.mobile {
+  display: none; /* Sembunyikan video mobile */
+}
+
 @media (max-width: 767px) {
   .banner {
-    height: 83vh;
+    height: 95vh;
   }
 }
 
@@ -72,7 +80,6 @@ img {
 
 header {
   text-align: center;
-  margin-bottom: 20px;
 }
 
 header h1 {
@@ -81,12 +88,14 @@ header h1 {
 }
 
 nav {
-  background-color: rgb(48, 45, 45);
+  background-color: #181818;
   padding: 10px;
   border-radius: 15px;
+  opacity: 70%;
 }
 
 nav ul {
+  font-weight: bold;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -254,15 +263,16 @@ nav a:hover {
 }
 .main {
   text-align: center;
-  margin-top: 12%;
+  margin-top: 5%;
   justify-content: center;
 }
 
 .main img {
   margin-bottom: 50px;
+  width: 350px;
   background-color: #383434;
   padding: 25px;
-  border-radius: 50px;
+  border-radius: 30px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -292,7 +302,7 @@ nav a:hover {
 
 @media only screen and (max-width: 767px) {
   .main h3 {
-    text-align: center;
+    text-align: start;
   }
 }
 
@@ -324,10 +334,9 @@ nav a:hover {
   color: #ffa200;
   text-decoration: none;
   display: block;
-  margin: 50px;
+  margin: 25px;
   background-color: #282828;
   border-radius: 10px;
-  box-shadow: rgb(0, 5, 0, 0.9);
 }
 
 /* fotter di file index */
@@ -549,4 +558,96 @@ nav a:hover {
   100% {
     transform: translateX(-100%); /* Bergerak ke luar kiri */
   }
+}
+
+
+.fire-effect {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, rgba(255, 165, 0, 0.8) 0%, rgba(255, 0, 0, 0.8) 100%);
+  border-radius: 70%;
+  animation: fire-animation 1s infinite;
+  transform: translateX(-50%);
+  opacity: 0.8;
+}
+
+.fire-effect:nth-child(1) {
+  animation-delay: 0s;
+  transform: translate(-50%, 0);
+}
+
+.fire-effect:nth-child(2) {
+  animation-delay: 0.2s;
+  transform: translate(-50%, -10px);
+}
+
+.fire-effect:nth-child(3) {
+  animation-delay: 0.4s;
+  transform: translate(-50%, -20px);
+}
+
+@keyframes fire-animation {
+  0% {
+    transform: translate(-50%, 0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-50%, -10px) scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -20px) scale(1);
+    opacity: 0.8;
+  }
+}
+
+.graimg {
+  position: absolute;
+  width: 100%; /* Sesuaikan dengan ukuran yang diinginkan */
+  overflow: hidden;
+  z-index: -1;
+  justify-content: center;
+  margin-top: -10;
+}
+@media (max-width: 767px) {
+  .graimg {
+    height: 83vh;
+  }
+}
+.graimg img {
+  width: 100%;
+  height: 100vh;
+  margin-top: 10; /* Memastikan gambar mengisi area */
+}
+
+.gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 300%; /* Tinggi gradien */
+    background: linear-gradient(to top, #181818, transparent);
+}
+
+.audio-container {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+#toggle-button {
+  padding: 9px 15px;
+  font-size: 13px;
+  border: none;
+  background-color: #181818;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+#toggle-button:hover {
+  background-color: #ffa200;
 }
