@@ -7,3 +7,6 @@ Kita tahu nonton anime itu nggak sekadar hiburan, tapi juga passion. Makanya, *M
 
 **Ayo Dicoba Sekarang!**
 Langsung aja ke *MyAnime*, pilih anime favoritmu, dan nikmati pengalaman nonton yang asyik tanpa pusing. Selamat menikmati, ya!
+
+link untuk masuk ke web:
+https://ransyah21.github.io/Myanime/
