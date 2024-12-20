@@ -15,6 +15,11 @@
     {
       "filePath": "javapertama.js",
       "group": "Default"
+    },
+    {
+      "filePath": "Main.js",
+      "group": "Default"
     }
-  ]
+  ],
+  "liveServer.settings.multiRootWorkspaceName": "Myanime1"
 }

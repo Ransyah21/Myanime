@@ -53,61 +53,6 @@ searchInput.addEventListener("keyup", function (event) {
   });
 });
 
-// uji coba pagination
-
-const totalPages = 440; // Total jumlah halaman
-const visiblePages = 5; // Jumlah halaman yang terlihat
-let currentPage = 1; // Halaman saat ini
-
-function renderPagination(currentPage) {
-  const pagination = document.getElementById("pagination");
-  pagination.innerHTML = ""; // Kosongkan pagination
-
-  // Hitung halaman yang akan ditampilkan
-  const startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
-  const endPage = Math.min(totalPages, startPage + visiblePages - 1);
-
-  // Tombol "Previous"
-  if (currentPage > 1) {
-    const prevPage = document.createElement("a");
-    prevPage.textContent = "«";
-    prevPage.href = "#";
-    prevPage.onclick = () => goToPage(currentPage - 1);
-    pagination.appendChild(prevPage);
-  }
-
-  // Tampilkan halaman dari startPage sampai endPage
-  for (let i = startPage; i <= endPage; i++) {
-    const pageLink = document.createElement("a");
-    pageLink.textContent = i;
-    pageLink.href = "#";
-    if (i === currentPage) {
-      pageLink.classList.add("active");
-    }
-    pageLink.onclick = () => goToPage(i);
-    pagination.appendChild(pageLink);
-  }
-
-  // Tombol "Next"
-  if (currentPage < totalPages) {
-    const nextPage = document.createElement("a");
-    nextPage.textContent = "»";
-    nextPage.href = "#";
-    nextPage.onclick = () => goToPage(currentPage + 1);
-    pagination.appendChild(nextPage);
-  }
-}
-
-function goToPage(pageNumber) {
-  currentPage = pageNumber;
-  renderPagination(currentPage);
-  // Logika untuk memuat halaman konten di sini
-  console.log(`Loading content for page ${pageNumber}`);
-}
-
-// Inisialisasi pagination pertama kali
-renderPagination(currentPage);
-
 function ShowAlert(event) {
   event.preventDefault();
   alert("maaf Masih dalam on-going!!");
@@ -153,7 +98,7 @@ if (accessToken) {
   localStorage.setItem("access_token", accessToken);
   getUserInfo(accessToken);
   // Hapus access_token dari URL
-  history.replaceState(null, '', window.location.pathname);
+  history.replaceState(null, "", window.location.pathname);
 } else {
   updateMenu(false);
 }
@@ -223,4 +168,55 @@ document.body.addEventListener("click", (e) => {
       `scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
     window.location.href = oauth2Url;
   }
+});
+
+if (window.location.pathname.endsWith("index.html")) {
+  window.history.replaceState(
+    null,
+    "",
+    window.location.pathname.replace("index.html", "")
+  );
+}
+
+// Uji coba
+
+function requestNotificationPermission() {
+  if (!("Notification" in window)) {
+    alert("Browser ini tidak mendukung notifikasi.");
+  } else if (Notification.permission === "granted") {
+    alert("Izin notifikasi sudah diberikan.");
+  } else if (Notification.permission !== "denied") {
+    Notification.requestPermission().then((permission) => {
+      if (permission === "granted") {
+        alert("Izin notifikasi diberikan!");
+      }
+    });
+  }
+}
+
+// Fungsi untuk mengirimkan notifikasi
+function sendNotification() {
+  if (Notification.permission === "granted") {
+    new Notification("Anime Update", {
+      body: "Anime Uq holder baru COY",
+      icon: "Gambar\nime-removebg-preview.png", // URL ikon (opsional)
+    });
+  } else {
+    alert("Silakan izinkan notifikasi terlebih dahulu.");
+  }
+}
+
+// Meminta izin saat pertama kali
+document.addEventListener("DOMContentLoaded", requestNotificationPermission);
+
+// Menangani klik tombol
+document
+  .getElementById("notifyBtn")
+  .addEventListener("click", sendNotification);
+
+Notification.requestPermission();
+
+new Notification("Anime Uq holder baru COY", {
+  body: "Update",
+  icon: "Gambar\nime-removebg-preview.png",
 });
