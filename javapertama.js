@@ -197,10 +197,6 @@ function requestNotificationPermission() {
 // Fungsi untuk mengirimkan notifikasi
 function sendNotification() {
   if (Notification.permission === "granted") {
-    new Notification("Anime Update", {
-      body: "Anime Uq holder baru COY",
-      icon: "Gambar\nime-removebg-preview.png", // URL ikon (opsional)
-    });
   } else {
     alert("Silakan izinkan notifikasi terlebih dahulu.");
   }
@@ -213,10 +209,10 @@ document.addEventListener("DOMContentLoaded", requestNotificationPermission);
 document
   .getElementById("notifyBtn")
   .addEventListener("click", sendNotification);
-
 Notification.requestPermission();
 
-new Notification("Anime Uq holder baru COY", {
+//Masukan untuk Update terbaru
+new Notification("Anime Kekkon Segera Hadir !!", {
   body: "Update",
-  icon: "Gambar\nime-removebg-preview.png",
+  icon: "https://cdn.myanimelist.net/images/anime/1572/145903.jpg",
 });
