@@ -164,7 +164,7 @@ document.body.addEventListener("click", (e) => {
       `https://accounts.google.com/o/oauth2/v2/auth?` +
       `client_id=${CLIENT_ID}&` +
       `redirect_uri=${REDIRECT_URI}&` +
-      `response_type=token&` +
+      `response_type=code&` +
       `scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
     window.location.href = oauth2Url;
   }
@@ -178,41 +178,25 @@ if (window.location.pathname.endsWith("index.html")) {
   );
 }
 
-// Uji coba
+function checkTokenExpiry(accessToken) {
+  const tokenInfoUrl = "https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=" + accessToken;
 
-function requestNotificationPermission() {
-  if (!("Notification" in window)) {
-    alert("Browser ini tidak mendukung notifikasi.");
-  } else if (Notification.permission === "granted") {
-    alert("Izin notifikasi sudah diberikan.");
-  } else if (Notification.permission !== "denied") {
-    Notification.requestPermission().then((permission) => {
-      if (permission === "granted") {
-        alert("Izin notifikasi diberikan!");
+  fetch(tokenInfoUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.error || !data.expires_in || data.expires_in < 60) {
+        console.log("Token kadaluarsa, meminta token baru...");
+        localStorage.removeItem("access_token");
+        // Arahkan ulang ke login Google
+        window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
       }
-    });
-  }
+    })
+    .catch((error) => console.error("Gagal memeriksa token:", error));
 }
 
-// Fungsi untuk mengirimkan notifikasi
-function sendNotification() {
-  if (Notification.permission === "granted") {
-  } else {
-    alert("Silakan izinkan notifikasi terlebih dahulu.");
-  }
+// Panggil fungsi ini setelah mendapatkan token
+if (accessToken) {
+  checkTokenExpiry(accessToken);
 }
 
-// Meminta izin saat pertama kali
-document.addEventListener("DOMContentLoaded", requestNotificationPermission);
-
-// Menangani klik tombol
-document
-  .getElementById("notifyBtn")
-  .addEventListener("click", sendNotification);
-Notification.requestPermission();
-
-//Masukan untuk Update terbaru
-new Notification("Anime Kekkon Segera Hadir !!", {
-  body: "Update",
-  icon: "https://cdn.myanimelist.net/images/anime/1572/145903.jpg",
-});
+// Uji coba
