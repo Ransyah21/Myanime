@@ -39,3 +39,35 @@ function openModal() {
         window.open(link, '_blank');
         closeModal();
     }
+
+//Loading nya
+
+// Ambil elemen loader
+const loader = document.getElementById('loader');
+
+// Fungsi untuk menampilkan loader
+function showLoader(duration, callback) {
+  loader.style.display = 'block'; // Tampilkan loader
+  setTimeout(() => {
+    loader.style.display = 'none'; // Sembunyikan loader setelah waktu tertentu
+    if (callback) callback(); // Jalankan callback jika ada
+  }, duration); // Durasi loading dalam milidetik
+}
+
+// Fungsi opennonton
+function opennonton() {
+  showLoader(1500, () => {
+    // Tambahkan logika tambahan untuk "nonton" di sini
+    const modal = document.getElementById('mynonton');
+    modal.style.display = 'block';
+  });
+}
+
+// Fungsi openModal
+function openModal() {
+  showLoader(1500, () => {
+    // Tambahkan logika tambahan untuk "download" di sini
+    const modal = document.getElementById('myModal');
+    modal.style.display = 'block';
+  });
+}
