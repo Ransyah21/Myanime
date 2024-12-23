@@ -29,6 +29,13 @@ const data = [
   "Bucchigiri?!",
   "Seisen Cerberus: Ryuukoku no Fatalités",
   "Mairimashita! Iruma-kun",
+  "Kimi wa Meido-sama.",
+  "Dokyuu Hentai HxEros",
+  "Toaru Ossan no VRMMO Katsudouki",
+  "Jashin-chan Dropkick",
+  "Rewrite",
+  "Ladies versus Butlers!",
+  "coba",
 ];
 
 // Ambil elemen-elemen yang diperlukan
@@ -52,6 +59,35 @@ searchInput.addEventListener("keyup", function (event) {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const searchInput = document.getElementById("search-input");
+  const resultsContainer = document.querySelector("main"); // Elemen tempat menampilkan hasil
+
+  if (searchInput) {
+    const data = await fetchData(); // Ambil data dari Database.html
+    console.log("Data fetched:", data);
+
+    // Event listener untuk pencarian
+    searchInput.addEventListener("keyup", function () {
+      const searchValue = searchInput.value.toLowerCase();
+
+      // Filter data berdasarkan pencarian
+      const results = data.filter(item => item.toLowerCase().includes(searchValue));
+
+      // Tampilkan hasil pencarian
+      resultsContainer.innerHTML = results
+        .map(
+          anime =>
+            `<div class="anime-item">
+               <span>${anime}</span>
+             </div>`
+        )
+        .join("");
+    });
+  }
+});
+
 
 function ShowAlert(event) {
   event.preventDefault();
@@ -200,58 +236,3 @@ if (accessToken) {
 }
 
 // Uji coba
-
-
-var btns = document.querySelectorAll('.btn');
-var paginationWrapper = document.querySelector('.pagination-wrapper');
-var bigDotContainer = document.querySelector('.big-dot-container');
-var littleDot = document.querySelector('.little-dot');
-
-let currentPage = 1; // Halaman saat ini
-const itemsPerPage = 20; // Jumlah item per halaman
-const items = document.querySelectorAll('.anime-item'); // Ambil semua item yang ingin dipaginasikan
-const totalPages = Math.ceil(items.length / itemsPerPage); // Hitung total halaman
-
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener('click', btnClick);
-}
-
-function btnClick() {
-  if (this.classList.contains('btn--prev')) {
-    if (currentPage > 1) {
-      currentPage--;
-      paginationWrapper.classList.add('transition-prev');
-    }
-  } else {
-    if (currentPage < totalPages) {
-      currentPage++;
-      paginationWrapper.classList.add('transition-next');
-    }
-  }
-  
-  showPage(currentPage); // Tampilkan halaman yang sesuai
-  var timeout = setTimeout(cleanClasses, 500);
-}
-
-function cleanClasses() {
-  if (paginationWrapper.classList.contains('transition-next')) {
-    paginationWrapper.classList.remove('transition-next');
-  } else if (paginationWrapper.classList.contains('transition-prev')) {
-    paginationWrapper.classList.remove('transition-prev');
-  }
-}
-
-function showPage(page) {
-  // Sembunyikan semua item
-  items.forEach((item, index) => {
-    item.style.display = 'none'; // Sembunyikan semua item
-    if (index >= (page - 1) * itemsPerPage && index < page * itemsPerPage) {
-      item.style.display = 'block'; // Tampilkan item yang sesuai dengan halaman
-    }
-  });
-}
-
-// Tampilkan halaman pertama saat halaman dimuat
-document.addEventListener('DOMContentLoaded', () => {
-  showPage(currentPage);
-});
