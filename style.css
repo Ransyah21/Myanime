@@ -1,9 +1,13 @@
 body {
+  overflow: auto;
   margin: auto;
   background-color: #181818;
   color: #fff;
   font-family: sans-serif;
   font-weight: bold;
+}
+body::-webkit-scrollbar {
+  display: none; /* Untuk Chrome, Edge, Safari */
 }
 
 .banner {
@@ -330,7 +334,7 @@ nav a:hover {
 .main a {
   text-align: center;
   padding: 20px;
-  font-size: 20px;
+  font-size: 15px;
   color: #ffa200;
   text-decoration: none;
   display: block;

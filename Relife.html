@@ -1,74 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyAnime - Relife</title>
-    <link rel="stylesheet" href="opsi.css">
-    <link rel="icon" href="Gambar/nime-removebg-preview.png" type="image/x-icon"></head>
-<body>
-    
+    <link rel="stylesheet" href="opsi.css" />
+    <link
+      rel="icon"
+      href="Gambar/nime-removebg-preview.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
     <div class="graimg">
-        <img src="#" alt="Gambar">
-        <div class="gradient"></div>
+      <img
+        src="https://cdn.myanimelist.net/images/anime/3/82149.jpg"
+        alt="Gambar"
+      />
+      <div class="gradient"></div>
     </div>
 
- <header>
-    <div class="container">
+    <header>
+      <div class="container">
         <h3 class="title">Myanime</h3>
-    </div>
- </header>
+      </div>
+    </header>
 
- <main class="main">
-    <img src="#" alt="">
-    <h2>name</h2>
-    <h4 style="color: white; font-family: sans-serif; font-size: large; padding: 0; margin: auto;">Genre</h4>
-        <h3>Sysnopsis!</h3>
-        <p>Dekripsi</p>
-        <hr class="batas">
-    <div class="opsi">
-        <div class="loader" id="loader" style="display: none;">Loading..</div>
-        <a ><button class="text-button" onclick="opennonton()">Streaming</button></a>
-        <a ><button onclick="openModal()">Download Batch</button></a>
-    </div>
-    <!-- Streaming -->
-    <div id="mynonton" class="modal">
+    <main class="main">
+      <img src="https://cdn.myanimelist.net/images/anime/3/82149.jpg" alt="" />
+      <h2>Relife</h2>
+      <h4
+        style="
+          color: white;
+          font-family: sans-serif;
+          font-size: large;
+          padding: 0;
+          margin: auto;
+        "
+      >
+        Drama, Romance
+      </h4>
+      <p id="synopsis">
+        Arata Kaizaki, yang udah 27 tahun, dianggap sebagai pecundang oleh
+        orang-orang di sekitarnya. Dia sering gonta-ganti kerja setelah keluar
+        dari perusahaan pertamanya. Hidupnya yang biasa-biasa aja berubah
+        drastis ketika dia ketemu Ryou Yoake dari ReLife Research Institute,
+        yang nawarin Arata kesempatan buat mengubah hidupnya dengan pil
+        misterius. Tanpa pikir panjang, Arata minum pil itu dan bangun keesokan
+        harinya dengan penampilan yang kembali jadi 17 tahun. <br />
+        <span id="dots">...</span>
+        <span id="more" style="display: none">
+          Ternyata, Arata jadi subjek eksperimen unik dan harus masuk sekolah
+          lagi sebagai murid pindahan selama setahun. Dia pikir ini bakal
+          gampang karena pengalaman hidupnya, tapi di hari pertamanya, dia
+          langsung gagal semua ujian, fisiknya jelek, dan nggak bisa mengikuti
+          aturan sekolah yang udah berubah dalam 10 tahun terakhir. Ryou juga
+          ditugasin buat mengawasi dia, yang bikin Arata makin kesal. ReLIFE
+          ngikutin perjuangan Arata buat beradaptasi dengan kehidupan barunya
+          yang hectic dan menghindari kesalahan masa lalu, sambil pelan-pelan
+          mengenal teman-teman sekelasnya. </span
+        ><button class="readmore" onclick="toggleReadMore()" id="readMoreBtn">
+          Read More
+        </button>
+      </p>
+
+      <hr class="batas" />
+      <div class="opsi">
+        <div class="loader" id="loader" style="display: none">Loading..</div>
+        <a
+          ><button class="text-button" onclick="opennonton()">
+            Streaming
+          </button></a
+        >
+        <a><button onclick="openModal()">Download Batch</button></a>
+      </div>
+      <!-- Streaming -->
+      <div id="mynonton" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closenonton()">&times;</span>
-            <p class="test">Silakan pilih season yang ingin ditonton :</p>
-            <a href="#" target="_blank">Tonton Season 1 </a>
-            <a href="#" target="_blank">Tonton Season 2 </a>
+          <span class="close" onclick="closenonton()">&times;</span>
+          <p class="test">Silakan pilih yang ingin ditonton :</p>
+          <a href="#" target="_blank">Tonton Relife </a>
+          <a class="option-hover" href="#" target="_blank"
+            ><img
+              class="tooltip1"
+              src="https://cdn.myanimelist.net/images/anime/1566/91061.jpg"
+              alt="Tooltip Gambar"
+            />
+            Tonton ReLIFE:Kanketsu-hen
+          </a>
         </div>
-    </div>
-    <!-- Download -->
-    <div id="myModal" class="modal">
+      </div>
+      <!-- Download -->
+      <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <p>Apakah Anda ingin mendownload Season 1 atau season 2?</p>
-            <a><button target="_blank" onclick="chooseLink('https://drive.usercontent.google.com/download?id=...&export=download&authuser=1')">Download Season 1</button></a>
-            <a><button target="_blank" onclick="chooseLink('https://drive.usercontent.google.com/download?id=...&export=download&authuser=1')">Download season 2</button></a>
+          <span class="close" onclick="closeModal()">&times;</span>
+          <p>Apakah Anda ingin mendownload Season 1 atau season 2?</p>
+          <a
+            ><button
+              target="_blank"
+              onclick="chooseLink('https://drive.usercontent.google.com/download?id=1LchowNqNEJch0KVPhcn62QIYb4-Hhc9J&export=download&authuser=1')"
+            >
+              Download Relife
+            </button></a
+          >
+          <a
+            ><button
+              target="_blank"
+              onclick="chooseLink('https://drive.usercontent.google.com/download?id=1m0ByuVPIQgSTG0-MjLMSdDkKXt2KGwLG&export=download&authuser=1')"
+            >
+              Download ReLIFE:Kanketsu-hen
+            </button></a
+          >
         </div>
-    </div>
+      </div>
     </main>
 
-<header>
-    <footer class="footer">
+    <header>
+      <footer class="footer">
         <div class="footer-section">
-            <div class="footer-item">
-                <img src="https://cdn-icons-png.flaticon.com/128/3631/3631618.png" alt="Tips Icon" class="footer-icon">
-                <h3>Follow us</h3>
-                <p>Instragram : ransyah_32</p>
-            </div>
-            <div class="footer-item">
-                <img src="https://cdn-icons-png.flaticon.com/128/8316/8316145.png" alt="Info Icon" class="footer-icon">
-                <h3>Info</h3>
-                <p>Web masih dalam tahap pengembangan,laporkan admin jika melihat error atau bug.</p>
-            </div>
+          <div class="footer-item">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/3631/3631618.png"
+              alt="Tips Icon"
+              class="footer-icon"
+            />
+            <h3>Follow us</h3>
+            <p>Instragram : ransyah_32</p>
+          </div>
+          <div class="footer-item">
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/8316/8316145.png"
+              alt="Info Icon"
+              class="footer-icon"
+            />
+            <h3>Info</h3>
+            <p>
+              Web masih dalam tahap pengembangan,laporkan admin jika melihat
+              error atau bug.
+            </p>
+          </div>
         </div>
-    </footer>
-</header>
-</body>
+      </footer>
+    </header>
+  </body>
 
-<script src="Main.js">
-</script>
+  <script src="Main.js"></script>
 </html>

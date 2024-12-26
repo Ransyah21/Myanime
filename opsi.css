@@ -1,9 +1,13 @@
 body {
+  overflow: auto; /* Scroll tetap aktif */
   margin: auto;
   background-color: #181818;
   color: #fff;
   font-family: sans-serif;
   font-weight: bold;
+}
+body::-webkit-scrollbar {
+  display: none; /* Untuk Chrome, Edge, Safari */
 }
 
 .banner {
@@ -310,7 +314,7 @@ nav a:hover {
   margin: 25px;
   letter-spacing: 1px;
   text-align: left;
-  align-content: center;
+  align-content: start;
   background-color: #383434;
   border-radius: 20px;
   padding: 10px;
@@ -318,7 +322,7 @@ nav a:hover {
 
 @media only screen and (max-width: 767px) {
   .main p {
-    text-align: center;
+    text-align: start;
     padding: 30px;
   }
 }
@@ -331,7 +335,7 @@ nav a:hover {
 .main a {
   text-align: center;
   padding: 20px;
-  font-size: 20px;
+  font-size: 16px;
   color: #ffa200;
   text-decoration: none;
   display: block;
@@ -340,7 +344,7 @@ nav a:hover {
   border-radius: 10px;
 }
 
-.main a:hover{
+.main a:hover {
   background-color: #ffa200;
   background: linear-gradient(-45deg, #282828 40%, #fafafa 50%, #282828 60%);
   background-size: 300%;
@@ -350,7 +354,7 @@ nav a:hover {
 
 @keyframes shimmer {
   to {
-     background-position-x: 0%
+    background-position-x: 0%;
   }
 }
 /* fotter di file index */
@@ -595,7 +599,7 @@ nav a:hover {
 
 .graimg {
   position: absolute;
-  width: 100%; /* Sesuaikan dengan ukuran yang diinginkan */
+  width: 110%; /* Sesuaikan dengan ukuran yang diinginkan */
   overflow: hidden;
   z-index: -1;
   justify-content: center;
@@ -603,12 +607,12 @@ nav a:hover {
 }
 @media (max-width: 767px) {
   .graimg {
-    height: 83vh;
+    width: 100% !important ;
   }
 }
 .graimg img {
   width: 100%;
-  height: 100vh;
+  height: 150vh;
   margin-top: 10; /* Memastikan gambar mengisi area */
 }
 
@@ -691,7 +695,6 @@ nav a:hover {
   padding: 10px;
 }
 
-
 .loader {
   position: fixed; /* Tetap di atas layar */
   top: 50%;
@@ -710,7 +713,7 @@ nav a:hover {
   background: #ffffff;
   position: absolute;
   top: 0;
-  content: '';
+  content: "";
   width: 1em;
   height: 4em;
 }
@@ -728,12 +731,57 @@ nav a:hover {
 }
 
 @keyframes load1 {
-  0%, 80%, 100% {
+  0%,
+  80%,
+  100% {
     box-shadow: 0 0 #ffffff;
     height: 4em;
   }
   40% {
     box-shadow: 0 -2em #ffffff;
     height: 5em;
+  }
+}
+
+.readmore {
+  width: 120px !important;
+  text-align: start;
+}
+
+/*tool tip*/
+.option-hover  {
+  display: inline-block;
+  position: relative;
+  margin: none;
+  padding: 100px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.option-hover:hover {
+  background-color: #ffa200;
+}
+
+.option-hover .tooltip1 {
+  padding: 10px;
+  position: absolute;
+  top: -600%; /* Jarak dari elemen */
+  left: 50%;
+  transform: translateX(-50%);
+  display: none !important; /* Awalnya tidak terlihat */ 
+  width: 125px; /* Atur ukuran gambar */
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.option-hover:hover .tooltip1 {
+  display: block !important;
+}
+
+@media (max-width: 767px) {
+  .option-hover .tooltip1 {
+    display: none !important;
   }
 }
