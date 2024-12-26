@@ -749,7 +749,7 @@ nav a:hover {
 }
 
 /*tool tip*/
-.option-hover  {
+.option-hover {
   display: inline-block;
   position: relative;
   margin: none;
@@ -770,7 +770,7 @@ nav a:hover {
   top: -600%; /* Jarak dari elemen */
   left: 50%;
   transform: translateX(-50%);
-  display: none !important; /* Awalnya tidak terlihat */ 
+  display: none !important; /* Awalnya tidak terlihat */
   width: 125px; /* Atur ukuran gambar */
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

@@ -343,7 +343,7 @@ nav a:hover {
   border-radius: 10px;
 }
 
-.main a:hover{
+.main a:hover {
   background-color: #ffa200;
   background: linear-gradient(-45deg, #282828 40%, #fafafa 50%, #282828 60%);
   background-size: 300%;
@@ -352,17 +352,17 @@ nav a:hover {
 }
 
 @media only screen and (max-width: 767px) {
-.main a:active{
-  background-color: #ffa200;
-  background: linear-gradient(-45deg, #282828 40%, #fafafa 50%, #282828 60%);
-  background-size: 300%;
-  background-position-x: 100%;
-  animation: shimmer 1.5s infinite linear;
-}
+  .main a:active {
+    background-color: #ffa200;
+    background: linear-gradient(-45deg, #282828 40%, #fafafa 50%, #282828 60%);
+    background-size: 300%;
+    background-position-x: 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
 }
 @keyframes shimmer {
   to {
-     background-position-x: 0%
+    background-position-x: 0%;
   }
 }
 
@@ -486,9 +486,7 @@ nav a:hover {
 
 /* uji coba pagination */
 
-
 /* elemen loading */
-
 
 /* Efek blur di input search */
 #search-input {
