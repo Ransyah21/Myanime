@@ -73,12 +73,14 @@ document.addEventListener("DOMContentLoaded", async function () {
       const searchValue = searchInput.value.toLowerCase();
 
       // Filter data berdasarkan pencarian
-      const results = data.filter(item => item.toLowerCase().includes(searchValue));
+      const results = data.filter((item) =>
+        item.toLowerCase().includes(searchValue)
+      );
 
       // Tampilkan hasil pencarian
       resultsContainer.innerHTML = results
         .map(
-          anime =>
+          (anime) =>
             `<div class="anime-item">
                <span>${anime}</span>
              </div>`
@@ -87,7 +89,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
 });
-
 
 function ShowAlert(event) {
   event.preventDefault();
@@ -123,116 +124,100 @@ function handleCredentialResponse(response) {
 }
 const CLIENT_ID =
   "429779218315-46milavmlmmbb1b1v5p6v4mbh1o40uk6.apps.googleusercontent.com";
-const REDIRECT_URI = "https://ransyah21.github.io/Myanime/"; // Ganti ini dengan URL aplikasimu
-// Cek login state
-const hash = window.location.hash;
-const params = new URLSearchParams(hash.substring(1));
-const accessToken =
-  params.get("access_token") || localStorage.getItem("access_token");
+const REDIRECT_URI = "https://ransyah21.github.io/Myanime/";
+const menu = document.getElementById("menu");
 
-if (accessToken) {
-  localStorage.setItem("access_token", accessToken);
-  getUserInfo(accessToken);
-  // Hapus access_token dari URL
-  history.replaceState(null, "", window.location.pathname);
-} else {
-  updateMenu(false);
+// Fungsi untuk login dengan Google
+function handleLogin() {
+  const oauth2Url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
+  window.location.href = oauth2Url;
 }
 
-// Ambil informasi pengguna
-function getUserInfo(accessToken) {
-  fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  })
-    .then((response) => response.json())
-    .then((userInfo) => {
-      console.log("User Info:", userInfo);
-      updateMenu(true, userInfo);
-    })
-    .catch((error) => {
-      console.error("Error fetching user info:", error);
-      updateMenu(false);
-    });
+// Fungsi untuk logout
+function handleLogout() {
+  localStorage.removeItem("access_token");
+  window.location.reload();
 }
 
-// Update menu navigasi
-function updateMenu(isLoggedIn, userInfo) {
-  const menu = document.querySelector("ul");
-
-  if (isLoggedIn) {
-    menu.innerHTML = `
-          <li>
-      <a href="#" style="display: flex; align-items: center; text-decoration: none;">
-        <div style="position: relative; display: inline-block;">
-          <div class="fire-effect"></div>
-          <div class="fire-effect"></div>
-          <div class="fire-effect"></div>
-          <div style="width: 30px; height: 30px; background: white; border-radius: 50%; border: 5px solid orange; display: flex; justify-content: center; align-items: center;">
-            <img src="${userInfo.picture}" alt="Foto Profil" style="border-radius: 50%; width: 30px; height: 30px; position: relative; z-index: 1;">
-          </div>
-        </div>
-        <div style="overflow: hidden; white-space: nowrap; width: 125px;">
-          <span class="animated-text">
-            Selamat Datang Di Myanime (${userInfo.name})
-          </span>
-        </div>
-      </a>
-    </li>
-          <li><a href="#" id="logout-btn">Logout</a></li>
-          <li><a href="About.html">About</a></li>
-        `;
-
-    // Tambahkan event listener untuk logout
-    document.getElementById("logout-btn").addEventListener("click", () => {
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("favorites"); // Hapus data favorit
-      window.location.reload();
-    });
-  }
-}
-
-// Tambahkan event listener untuk login
-document.body.addEventListener("click", (e) => {
-  if (e.target.id === "google-login-btn") {
-    const oauth2Url =
-      `https://accounts.google.com/o/oauth2/v2/auth?` +
-      `client_id=${CLIENT_ID}&` +
-      `redirect_uri=${REDIRECT_URI}&` +
-      `response_type=code&` +
-      `scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
-    window.location.href = oauth2Url;
-  }
-});
-
-if (window.location.pathname.endsWith("index.html")) {
-  window.history.replaceState(
-    null,
-    "",
-    window.location.pathname.replace("index.html", "")
-  );
-}
-
-function checkTokenExpiry(accessToken) {
-  const tokenInfoUrl = "https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=" + accessToken;
-
-  fetch(tokenInfoUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.error || !data.expires_in || data.expires_in < 60) {
-        console.log("Token kadaluarsa, meminta token baru...");
-        localStorage.removeItem("access_token");
-        // Arahkan ulang ke login Google
-        window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
+// Fungsi untuk mendapatkan informasi pengguna
+async function getUserInfo(accessToken) {
+  try {
+    const response = await fetch(
+      "https://www.googleapis.com/oauth2/v2/userinfo",
+      {
+        headers: { Authorization: `Bearer ${accessToken}` },
       }
-    })
-    .catch((error) => console.error("Gagal memeriksa token:", error));
+    );
+    if (!response.ok) throw new Error("Failed to fetch user info");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching user info:", error);
+    return null;
+  }
 }
 
-// Panggil fungsi ini setelah mendapatkan token
-if (accessToken) {
-  checkTokenExpiry(accessToken);
+// Fungsi untuk memperbarui menu
+async function updateMenu() {
+  console.log("Update menu dipanggil");
+  console.log(localStorage.getItem("access_token"));
+
+  const menu = document.getElementById("menu"); // Ganti dengan ID yang sesuai
+  if (!menu) {
+    console.error("Elemen menu tidak ditemukan!");
+    return;
+  }
+
+  const accessToken = localStorage.getItem("access_token");
+  if (accessToken) {
+    const userInfo = await getUserInfo(accessToken);
+    if (!userInfo || !userInfo.picture) {
+      console.error("Gagal mengambil info pengguna");
+      localStorage.removeItem("access_token");
+      window.location.reload();
+      return;
+    }
+
+    menu.innerHTML = `
+      <li>
+        <a href="#" id="logout-btn" style="display: flex; align-items: center; text-decoration: none;">
+          <div style="width: 30px; height: 30px; background: white; border-radius: 50%; border: 2px solid orange; display: flex; justify-content: center; align-items: center;">
+            <img src="${userInfo.picture}" alt="Foto Profil" style="border-radius: 50%; width: 30px; height: 30px;">
+          </div>
+          <div style="margin-left: 10px;">
+            <span>${userInfo.name}</span>
+          </div>
+        </a>
+      </li>
+      <li><a href="#" id="logout-btn-2">Logout</a></li>
+    `;
+
+    // Tambahkan event listener ke kedua tombol logout
+    document.querySelectorAll("#logout-btn, #logout-btn-2").forEach((btn) => {
+      btn.addEventListener("click", handleLogout);
+    });
+  } else {
+    menu.innerHTML = `<li><a id="google-login-btn" href="#">Login</a></li>`;
+    document
+      .getElementById("google-login-btn")
+      .addEventListener("click", handleLogin);
+  }
 }
+
+// Ambil access token dari URL
+function extractAccessToken() {
+  const hash = window.location.hash;
+  const params = new URLSearchParams(hash.substring(1));
+  const accessToken = params.get("access_token");
+  if (accessToken) {
+    localStorage.setItem("access_token", accessToken);
+    history.replaceState(null, "", window.location.pathname); // Hapus access token dari URL
+  }
+}
+
+// Jalankan saat halaman dimuat
+window.addEventListener("DOMContentLoaded", () => {
+  extractAccessToken();
+  updateMenu();
+});
 
 // Uji coba
