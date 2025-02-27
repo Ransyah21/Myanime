@@ -158,33 +158,43 @@ async function getUserInfo(accessToken) {
 
 // Fungsi untuk memperbarui menu
 async function updateMenu() {
-  console.log("Update menu dipanggil")
-  console.log(localStorage.getItem("access_token"))
+  console.log("Update menu dipanggil");
+  console.log(localStorage.getItem("access_token"));
+
+  const menu = document.getElementById("menu"); // Ganti dengan ID yang sesuai
+  if (!menu) {
+    console.error("Elemen menu tidak ditemukan!");
+    return;
+  }
+
   const accessToken = localStorage.getItem("access_token");
   if (accessToken) {
     const userInfo = await getUserInfo(accessToken);
-    if (userInfo) {
-      menu.innerHTML = `
-        <li>
-          <a href="#" id="logout-btn" style="display: flex; align-items: center; text-decoration: none;">
-            <div style="width: 30px; height: 30px; background: white; border-radius: 50%; border: 2px solid orange; display: flex; justify-content: center; align-items: center;">
-              <img src="${userInfo.picture}" alt="Foto Profil" style="border-radius: 50%; width: 30px; height: 30px;">
-            </div>
-            <div style="margin-left: 10px;">
-              <span>${userInfo.name}</span>
-            </div>
-          </a>
-        </li>
-        <li><a href="#" id="logout-btn">Logout</a></li>
-      `;
-      // Tambahkan event listener untuk logout
-      document
-        .getElementById("logout-btn")
-        .addEventListener("click", handleLogout);
-    } else {
-      localStorage.removeItem("access_token"); // Hapus token jika gagal memuat info
+    if (!userInfo || !userInfo.picture) {
+      console.error("Gagal mengambil info pengguna");
+      localStorage.removeItem("access_token");
       window.location.reload();
+      return;
     }
+
+    menu.innerHTML = `
+      <li>
+        <a href="#" id="logout-btn" style="display: flex; align-items: center; text-decoration: none;">
+          <div style="width: 30px; height: 30px; background: white; border-radius: 50%; border: 2px solid orange; display: flex; justify-content: center; align-items: center;">
+            <img src="${userInfo.picture}" alt="Foto Profil" style="border-radius: 50%; width: 30px; height: 30px;">
+          </div>
+          <div style="margin-left: 10px;">
+            <span>${userInfo.name}</span>
+          </div>
+        </a>
+      </li>
+      <li><a href="#" id="logout-btn-2">Logout</a></li>
+    `;
+
+    // Tambahkan event listener ke kedua tombol logout
+    document.querySelectorAll("#logout-btn, #logout-btn-2").forEach((btn) => {
+      btn.addEventListener("click", handleLogout);
+    });
   } else {
     menu.innerHTML = `<li><a id="google-login-btn" href="#">Login</a></li>`;
     document
