@@ -167,6 +167,9 @@ async function updateMenu() {
     return;
   }
 
+  // Hapus menu sebelumnya
+  menu.innerHTML = "";
+
   const accessToken = localStorage.getItem("access_token");
   if (accessToken) {
     const userInfo = await getUserInfo(accessToken);
@@ -177,7 +180,9 @@ async function updateMenu() {
       return;
     }
 
+    // Tambahkan menu untuk pengguna yang sudah login
     menu.innerHTML = `
+      <li><a href="About.html">About</a></li>
       <li>
         <a href="#" id="logout-btn" style="display: flex; align-items: center; text-decoration: none;">
           <div style="width: 30px; height: 30px; background: white; border-radius: 50%; border: 2px solid orange; display: flex; justify-content: center; align-items: center;">
@@ -196,6 +201,7 @@ async function updateMenu() {
       btn.addEventListener("click", handleLogout);
     });
   } else {
+    // Tambahkan menu untuk pengguna yang belum login
     menu.innerHTML = `<li><a id="google-login-btn" href="#">Login</a></li>`;
     document
       .getElementById("google-login-btn")
