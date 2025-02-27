@@ -203,6 +203,7 @@ async function updateMenu() {
   }
 }
 
+
 // Ambil access token dari URL
 function extractAccessToken() {
   const hash = window.location.hash;
