@@ -183,6 +183,7 @@ async function updateMenu() {
     // Tambahkan menu untuk pengguna yang sudah login
     menu.innerHTML = `
       <li><a href="About.html">About</a></li>
+      <li><a href="Full.html">FindNime</a></li>
       <li>
         <a href="#" id="logout-btn" style="display: flex; align-items: center; text-decoration: none;">
           <div style="width: 30px; height: 30px; background: white; border-radius: 50%; border: 2px solid orange; display: flex; justify-content: center; align-items: center;">
