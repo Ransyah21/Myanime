@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FindNime</title>
+    <link rel="stylesheet" href="cssful.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <h3>FindNime</h3>
+      <div>
+        <a href="index.html">Back</a>
+      </div>
+      <div class="search-container">
+        <img
+          src="Gambar/Searchlogo.png"
+          id="search-icon"
+          alt="Search"
+          onclick="toggleSearch()"
+        />
+        <input type="text" id="search-box" placeholder="Cari anime..." />
+      </div>
+    </header>
+
+    <!-- Genre Scroll -->
+    <div class="genre-container">
+      <div class="genres">
+        <div class="genre" onclick="getAnimeByGenre(1)">Action</div>
+        <div class="genre" onclick="getAnimeByGenre(2)">Adventure</div>
+        <div class="genre" onclick="getAnimeByGenre(4)">Comedy</div>
+        <div class="genre" onclick="getAnimeByGenre(8)">Drama</div>
+        <div class="genre" onclick="getAnimeByGenre(10)">Fantasy</div>
+      </div>
+    </div>
+
+    <!-- Anime List -->
+     <h4><center>list anime akan muncul bila search</center></h4>
+    <div id="anime-list"></div>
+
+    <script src="full.js"></script>
+  </body>
+</html>

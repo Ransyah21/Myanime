@@ -202,7 +202,8 @@ async function updateMenu() {
     });
   } else {
     // Tambahkan menu untuk pengguna yang belum login
-    menu.innerHTML = `<li><a id="google-login-btn" href="#">Login</a></li>`;
+    menu.innerHTML = `<li><a id="google-login-btn" href="#">Login</a></li>
+    <li><a href="Full.html">FindNime</a></li>`;
     document
       .getElementById("google-login-btn")
       .addEventListener("click", handleLogin);

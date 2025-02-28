@@ -1,0 +1,117 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #181818;
+    color: white;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #282828;
+}
+
+/* Search */
+.search-container {
+    position: relative;
+}
+
+.search-container .input {
+    color: #ffa200;
+}
+
+#search-icon {
+    width: 25px;
+    cursor: pointer;
+}
+
+#search-box {
+    background-color: #181818;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    opacity: 0;
+    transition: all 0.5s ease;
+    padding: 4px;
+    border-radius: 10px;
+    border: none;
+    color: #ffa200;
+}
+
+/* Saat aktif, search muncul */
+.search-container.active #search-box {
+    width: 150px;
+    opacity: 1;
+    left: -155px;
+}
+
+/* Genre Scroll */
+.genre-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    background-color: #1f1f1f;
+    padding: 10px;
+}
+
+.genres {
+    display: flex;
+    gap: 10px;
+}
+
+.genre {
+    background-color: #282828;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Anime List */
+#anime-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.anime-item {
+    background-color: #1f1f1f;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 150px;
+}
+
+.anime-item img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .genres {
+        scroll-snap-type: x mandatory;
+        display: flex;
+        overflow-x: scroll;
+        padding: 10px;
+    }
+
+    .genre {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+    }
+}
+
+

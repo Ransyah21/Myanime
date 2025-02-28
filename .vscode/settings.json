@@ -19,6 +19,18 @@
     {
       "filePath": "Main.js",
       "group": "Default"
+    },
+    {
+      "filePath": "Full.html",
+      "group": "Default"
+    },
+    {
+      "filePath": "full.js",
+      "group": "Default"
+    },
+    {
+      "filePath": "cssful.css",
+      "group": "Default"
     }
   ],
   "liveServer.settings.multiRootWorkspaceName": "Myanime1"
