@@ -183,9 +183,8 @@ async function updateMenu() {
     // Tambahkan menu untuk pengguna yang sudah login
     menu.innerHTML = `
       <li><a href="About.html">About</a></li>
-      <li><a href="Full.html">FindNime</a></li>
       <li>
-        <a href="#" style="display: flex; align-items: center; text-decoration: none;">
+        <a href="#" id="logout-btn" style="display: flex; align-items: center; text-decoration: none;">
           <div style="width: 30px; height: 30px; background: white; border-radius: 50%; border: 2px solid orange; display: flex; justify-content: center; align-items: center;">
             <img src="${userInfo.picture}" alt="Foto Profil" style="border-radius: 50%; width: 30px; height: 30px;">
           </div>
@@ -194,11 +193,11 @@ async function updateMenu() {
           </div>
         </a>
       </li>
-      <li><a href="#" id="logout-btn-2">Logout</a></li>
+      <li><a href="Full.html">FindNime</a></li>
     `;
 
     // Tambahkan event listener ke kedua tombol logout
-    document.querySelectorAll(" #logout-btn-2").forEach((btn) => {
+    document.querySelectorAll("#logout-btn").forEach((btn) => {
       btn.addEventListener("click", handleLogout);
     });
   } else {
