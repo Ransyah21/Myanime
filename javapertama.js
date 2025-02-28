@@ -185,7 +185,7 @@ async function updateMenu() {
       <li><a href="About.html">About</a></li>
       <li><a href="Full.html">FindNime</a></li>
       <li>
-        <a href="#" id="logout-btn" style="display: flex; align-items: center; text-decoration: none;">
+        <a href="#" style="display: flex; align-items: center; text-decoration: none;">
           <div style="width: 30px; height: 30px; background: white; border-radius: 50%; border: 2px solid orange; display: flex; justify-content: center; align-items: center;">
             <img src="${userInfo.picture}" alt="Foto Profil" style="border-radius: 50%; width: 30px; height: 30px;">
           </div>
@@ -198,7 +198,7 @@ async function updateMenu() {
     `;
 
     // Tambahkan event listener ke kedua tombol logout
-    document.querySelectorAll("#logout-btn, #logout-btn-2").forEach((btn) => {
+    document.querySelectorAll(" #logout-btn-2").forEach((btn) => {
       btn.addEventListener("click", handleLogout);
     });
   } else {
