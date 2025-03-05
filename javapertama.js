@@ -207,6 +207,7 @@ async function updateMenu() {
     document
       .getElementById("google-login-btn")
       .addEventListener("click", handleLogin);
+      console.log(typeof handleLogin);
   }
 }
 
@@ -227,4 +228,4 @@ window.addEventListener("DOMContentLoaded", () => {
   updateMenu();
 });
 
-// Uji cob
+// Uji coba
