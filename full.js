@@ -1,89 +1,99 @@
-// 🟢 Toggle search input biar bisa muncul/ilang
-function toggleSearch() {
-    document.querySelector(".search-container").classList.toggle("active");
-}
+document.addEventListener("DOMContentLoaded", function () {
+  fetchDefaultAnime();
 
-// 🔍 Pencarian Anime
-document.getElementById("search-box").addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-        searchAnime();
-    }
+  // Tambahkan event listener untuk keypress
+  document
+    .getElementById("search-box")
+    .addEventListener("keypress", function (event) {
+      if (event.key === "Enter") {
+        searchAnime(); // Panggil fungsi pencarian ketika Enter ditekan
+      }
+    });
 });
 
+// 🟢 Toggle search input biar bisa muncul/ilang
+function toggleSearch() {
+  document.querySelector(".search-container").classList.toggle("active");
+}
+
+// 🔍 Pencarian Anime (Tanpa Loop untuk Menghindari Duplikasi)
 function searchAnime() {
-    let searchQuery = document.getElementById("search-box").value;
-    let url = `https://api.jikan.moe/v4/anime?q=${searchQuery}&limit=10`;
+  let searchQuery = document.getElementById("search-box").value;
+  let url = `https://api.jikan.moe/v4/anime?q=${searchQuery}&limit=175`;
 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            displayAnime(data.data);
-        })
-        .catch(error => console.log("Error:", error));
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      let allAnime = data.data || [];
+      console.log("Fetched Anime Data:", allAnime); // Log data anime yang diterima
+      displayAnime(allAnime);
+    })
+    .catch((error) => console.log("Error:", error));
 }
 
-// 🎭 Ambil Anime Berdasarkan Genre (Tampilkan lebih banyak!)
+// 🎭 Ambil Anime Berdasarkan Genre (FIXED: 50 Anime/Page + Pagination)
 function getAnimeByGenre(genreId, page = 1) {
-    let url = `https://api.jikan.moe/v4/anime?genres=${genreId}&page=${page}&limit=25`;
+  let url = `https://api.jikan.moe/v4/anime?genres=${genreId}&page=${page}&limit=50`;
 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            if (data.data.length > 0) {
-                displayAnime(data.data, genreId, page);
-            } else {
-                alert("Anime untuk genre ini gak banyak cuy! 🥲");
-            }
-        })
-        .catch(error => console.log("Error:", error));
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.data && data.data.length > 0) {
+        displayAnime(data.data, () => getAnimeByGenre(genreId, page + 1));
+      } else {
+        alert("Masi belum di tambah kan !");
+      }
+    })
+    .catch((error) => console.log("Error:", error));
 }
 
+// 🔄 Fetch Anime Default (Menampilkan lebih banyak halaman & musim sebelumnya)
+function fetchDefaultAnime(page = 1, season = "now") {
+  let urls = [];
 
-// 🔄 Tampilkan Anime & Pagination
-function displayAnime(animeList, genreId, page) {
-    let animeListDiv = document.getElementById("anime-list");
-    animeListDiv.innerHTML = ""; // Bersihin tampilan lama
+  for (let i = page; i < page + 10; i++) {
+    urls.push(`https://api.jikan.moe/v4/seasons/${season}?page=${i}&limit=25`);
+  }
 
-    animeList.forEach(anime => {
-        let animeItem = document.createElement("div");
-        animeItem.classList.add("anime-item");
-
-        animeItem.innerHTML = `
-            <img src="${anime.images.jpg.image_url}" alt="${anime.title}">
-            <h3>${anime.title}</h3>
-            <button onclick="opennonton('${anime.trailer.url}')">Nonton</button>
-            <button onclick="openModal()">Download</button>
-        `;
-
-        animeListDiv.appendChild(animeItem);
-    });
-
-    // Tambahin tombol Next Page
-    let paginationDiv = document.createElement("div");
-    paginationDiv.classList.add("pagination");
-
-    paginationDiv.innerHTML = `
-        <button onclick="getAnimeByGenre(${genreId}, ${page + 1})">Next Page</button>
-    `;
-
-    animeListDiv.appendChild(paginationDiv);
+  Promise.all(urls.map((url) => fetch(url).then((response) => response.json())))
+    .then((results) => {
+      let allAnime = results.flatMap((result) => result.data || []);
+      displayAnime(allAnime, () =>
+        fetchDefaultAnime(page + 10, season === "now" ? "previous" : season)
+      ); // Pindah ke musim sebelumnya setelah habis
+    })
+    .catch((error) => console.log("Error:", error));
 }
 
+// 📌 Tampilkan Anime di HTML (Tanpa Duplikasi)
+function displayAnime(animeList, nextPageFunction = null) {
+  let animeListDiv = document.getElementById("anime-list");
+  animeListDiv.innerHTML = "";
 
-// 📌 Tampilkan Anime di HTML
-function displayAnime(animeList) {
-    let animeListDiv = document.getElementById("anime-list");
-    animeListDiv.innerHTML = ""; // Hapus data lama
+  // Gunakan Set untuk menghindari duplikasi
+  let uniqueAnime = new Map();
+  animeList.forEach((anime) => {
+    if (!uniqueAnime.has(anime.mal_id)) {
+      uniqueAnime.set(anime.mal_id, anime);
+    }
+  });
 
-    animeList.forEach(anime => {
-        let animeItem = document.createElement("div");
-        animeItem.classList.add("anime-item");
+  uniqueAnime.forEach((anime) => {
+    let animeItem = document.createElement("div");
+    animeItem.classList.add("anime-item");
 
-        animeItem.innerHTML = `
-            <img src="${anime.images.jpg.image_url}" alt="${anime.title}">
-            <h3>${anime.title}</h3>
-        `;
+    animeItem.innerHTML = `
+          <img src="${anime.images.jpg.image_url}" alt="${anime.title}">
+          <h3>${anime.title}</h3>
+      `;
 
-        animeListDiv.appendChild(animeItem);
-    });
+    animeListDiv.appendChild(animeItem);
+  });
+
+  if (nextPageFunction) {
+    let loadMoreButton = document.createElement("button");
+    loadMoreButton.innerText = "Load More";
+    loadMoreButton.addEventListener("click", nextPageFunction);
+    animeListDiv.appendChild(loadMoreButton);
+  }
 }
