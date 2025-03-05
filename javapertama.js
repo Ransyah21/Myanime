@@ -227,4 +227,4 @@ window.addEventListener("DOMContentLoaded", () => {
   updateMenu();
 });
 
-// Uji coba
+// Uji cob
